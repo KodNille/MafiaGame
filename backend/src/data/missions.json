@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Street Hustle",
+    "description": "Collect protection money from local businesses",
+    "difficulty": "easy",
+    "rewardMoney": 500,
+    "rewardXP": 50,
+    "lossMoney": 200,
+    "successRate": 0.75
+  },
+  {
+    "id": 5,
+    "name": "Underground Fight",
+    "description": "Bet on underground fighting matches",
+    "difficulty": "easy",
+    "rewardMoney": 800,
+    "rewardXP": 70,
+    "lossMoney": 300,
+    "successRate": 0.70
+  },
+  {
+    "id": 2,
+    "name": "Heist Planning",
+    "description": "Plan and execute a jewelry store heist",
+    "difficulty": "medium",
+    "rewardMoney": 2000,
+    "rewardXP": 150,
+    "lossMoney": 800,
+    "successRate": 0.55
+  },
+  {
+    "id": 4,
+    "name": "Smuggling Run",
+    "description": "Smuggle contraband across the border",
+    "difficulty": "medium",
+    "rewardMoney": 1500,
+    "rewardXP": 120,
+    "lossMoney": 600,
+    "successRate": 0.60
+  },
+  {
+    "id": 3,
+    "name": "Casino Takeover",
+    "description": "Take control of a rival casino",
+    "difficulty": "hard",
+    "rewardMoney": 5000,
+    "rewardXP": 400,
+    "lossMoney": 2000,
+    "successRate": 0.35
+  }
+]
