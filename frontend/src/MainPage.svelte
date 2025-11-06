@@ -53,7 +53,6 @@
 
 <div class="main-container">
   <Header username={user.username} onLogout={logout} />
-
   <div class="content">
     <!-- Profile Section -->
     <Profile 
@@ -62,7 +61,6 @@
       money={user.money}
       xp={user.xp}
     />
-
     <!-- Mission Result Section -->
     {#if missionResult}
       <MissionResult
@@ -101,18 +99,19 @@
         </div>
       {/if}
     </section>
+    
   </div>
 </div>
 
 <style>
   .main-container {
     min-height: 100vh;
-    padding: 20px;
+    padding: 80px;
   }
 
   .content {
-    max-width: 1400px;
-    margin: 0 auto;
+    display: flex;
+    gap: 90px;
   }
 
   /* Missions Section */
@@ -122,8 +121,8 @@
   }
 
   .missions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
   }
 

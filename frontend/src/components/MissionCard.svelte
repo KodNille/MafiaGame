@@ -66,6 +66,7 @@
     border-radius: 12px;
     padding: 20px;
     transition: transform 0.2s, box-shadow 0.2s;
+    width: 400px;
   }
 
   .mission-card:hover {

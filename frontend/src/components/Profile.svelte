@@ -38,6 +38,8 @@
 <style>
   .profile-section {
     margin-bottom: 30px;
+    width: 300px;
+    flex-shrink: 0;
   }
 
   .profile-section h2 {
