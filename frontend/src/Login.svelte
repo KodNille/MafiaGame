@@ -29,12 +29,12 @@
 
 <div class="login-container">
   <div class="login-box">
-    <h1>🕴️ Mafia Game</h1>
-    <p class="subtitle">Enter the underworld</p>
+    <h1>// MAFIA GAME</h1>
+    <p class="subtitle">[ ENTER THE UNDERWORLD ]</p>
 
     <form on:submit|preventDefault={handleLogin}>
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">USERNAME:</label>
         <input
           id="username"
           type="text"
@@ -46,7 +46,7 @@
       </div>
 
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">PASSWORD:</label>
         <input
           id="password"
           type="password"
@@ -58,16 +58,16 @@
       </div>
 
       {#if error}
-        <div class="error">{error}</div>
+        <div class="error">// ERROR: {error}</div>
       {/if}
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Logging in...' : 'Login'}
+        {loading ? '[ AUTHENTICATING... ]' : '[ LOGIN ]'}
       </button>
     </form>
 
     <div class="hint">
-      <small>Hint: username: "don", password: "asd"</small>
+      <small>// DEV: username: "don" | password: "asd"</small>
     </div>
   </div>
 </div>
@@ -82,77 +82,96 @@
   }
 
   .login-box {
-    background: #2a2a2a;
-    border: 2px solid #444;
-    border-radius: 12px;
-    padding: 40px;
+    background: transparent;
+    border-top: 2px solid var(--noir-accent);
+    padding: 50px 40px;
     width: 100%;
-    max-width: 400px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    max-width: 450px;
+    position: relative;
+  }
+
+  .login-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--noir-accent);
+    opacity: 0.3;
   }
 
   h1 {
-    color: #d4af37;
+    color: var(--noir-accent);
     text-align: center;
     margin-bottom: 10px;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 3px;
   }
 
   .subtitle {
     text-align: center;
-    color: #888;
-    margin-bottom: 30px;
-    font-style: italic;
+    color: var(--noir-text-muted);
+    margin-bottom: 40px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   label {
     display: block;
     margin-bottom: 8px;
-    color: #e8e6e3;
-    font-weight: 500;
+    color: var(--noir-text);
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
   }
 
   input {
     width: 100%;
-    padding: 12px;
-    background: #1a1a1a;
-    border: 2px solid #444;
-    border-radius: 6px;
-    color: #e8e6e3;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--noir-light-gray);
+    color: var(--noir-text);
+    font-size: 15px;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s;
   }
 
   input:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: var(--noir-accent);
   }
 
   input:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 
   button {
     width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
-    border: none;
-    border-radius: 6px;
-    color: #1a1a1a;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 16px;
+    background: transparent;
+    border: 3px solid var(--noir-accent);
+    color: var(--noir-accent);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
+    margin-top: 10px;
   }
 
   button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+    background: rgba(128, 128, 128, 0.1);
   }
 
   button:disabled {
@@ -161,18 +180,23 @@
   }
 
   .error {
-    background: #4a2020;
-    border: 1px solid #8b0000;
+    background: rgba(139, 0, 0, 0.2);
+    border-left: 2px solid var(--noir-red);
     color: #ff6b6b;
-    padding: 12px;
-    border-radius: 6px;
+    padding: 12px 15px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
   }
 
   .hint {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
-    color: #666;
+    color: var(--noir-text-muted);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
   }
 </style>

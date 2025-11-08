@@ -16,9 +16,9 @@
 </script>
 
 <div class="inventory-container">
-  <h2>🔫 Weapon Inventory</h2>
+  <h2>// WEAPON INVENTORY</h2>
   {#if weapons.length === 0}
-    <p class="no-weapons">No weapons owned. Visit the weapon shop!</p>
+    <p class="no-weapons">NO WEAPONS OWNED. VISIT THE WEAPON SHOP!</p>
   {:else}
     <div class="weapons-list">
       {#each weapons as weapon (weapon.id)}
@@ -41,7 +41,7 @@
             on:click={() => onEquip(weapon.id)}
             disabled={weapon.equipped}
           >
-            {weapon.equipped ? 'Equipped' : 'Equip'}
+            {weapon.equipped ? 'EQUIPPED' : 'EQUIP'}
           </button>
         </div>
       {/each}
@@ -51,25 +51,28 @@
 
 <style>
   .inventory-container {
-    background: #2a2a2a;
-    border: 2px solid #444;
-    border-radius: 12px;
+    background: transparent;
+    border-top: 2px solid var(--noir-accent);
     padding: 20px;
     width: 100%;
     max-width: 500px;
   }
 
   .inventory-container h2 {
-    color: #d4af37;
+    color: var(--noir-accent);
     margin: 0 0 20px 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
   }
 
   .no-weapons {
-    color: #888;
+    color: var(--noir-text-muted);
     text-align: center;
     padding: 40px 20px;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
   }
 
   .weapons-list {
@@ -79,23 +82,22 @@
   }
 
   .inventory-item {
-    background: #1a1a1a;
-    border: 2px solid #333;
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--noir-accent);
     padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: all 0.2s;
   }
 
   .inventory-item:hover {
-    border-color: #555;
+    border-color: var(--noir-accent);
   }
 
   .inventory-item.equipped {
-    border-color: #d4af37;
-    background: #252520;
+    border-color: var(--noir-accent);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .weapon-info {
@@ -110,17 +112,23 @@
   }
 
   .weapon-name-tier h3 {
-    color: #e8e6e3;
+    color: var(--noir-text);
     margin: 0;
     font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
   .tier {
     font-size: 0.7rem;
     font-weight: 700;
-    padding: 3px 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid currentColor;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
   }
 
   .weapon-bonuses {
@@ -129,27 +137,28 @@
   }
 
   .bonus {
-    color: #4CAF50;
-    font-size: 0.9rem;
-    font-weight: 600;
+    color: #6b8e4e;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
   }
 
   .equip-btn {
-    padding: 8px 20px;
-    background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
-    border: none;
-    border-radius: 6px;
-    color: #1a1a1a;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 8px 18px;
+    background: transparent;
+    border: 3px solid var(--noir-accent);
+    color: var(--noir-accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
     min-width: 100px;
+    font-family: 'Courier New', monospace;
   }
 
   .equip-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+    background: rgba(128, 128, 128, 0.1);
   }
 
   .equip-btn:disabled {
@@ -158,7 +167,8 @@
   }
 
   .equip-btn.equipped {
-    background: #4CAF50;
-    color: white;
+    background: transparent;
+    border-color: var(--noir-accent-dim);
+    color: var(--noir-text-muted);
   }
 </style>

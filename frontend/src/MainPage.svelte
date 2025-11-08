@@ -5,6 +5,7 @@
   import MissionResult from './components/MissionResult.svelte';
   import WeaponCard from './components/WeaponCard.svelte';
   import WeaponInventory from './components/WeaponInventory.svelte';
+  import Hoods from './components/Hoods.svelte';
   import { ApiService } from './services/apiService';
   import type { User, Mission, MissionResult as MissionResultType, Weapon } from './types';
 
@@ -16,7 +17,7 @@
   let loading = false;
   let executingMissionId: number | null = null;
   let missionResult: MissionResultType | null = null;
-  let activeTab: 'missions' | 'weapons' = 'missions';
+  let activeTab: 'missions' | 'weapons' | 'realestate' | 'hoods' = 'missions';
 
   async function loadMissions() {
     loading = true;
@@ -93,6 +94,10 @@
     window.dispatchEvent(new CustomEvent('logout'));
   }
 
+  function handleTabChange(tab: 'missions' | 'weapons' | 'realestate' | 'hoods') {
+    activeTab = tab;
+  }
+
   // Load data on component mount
   loadMissions();
   loadWeapons();
@@ -100,7 +105,13 @@
 </script>
 
 <div class="main-container">
-  <Header username={user.username} onLogout={logout} />
+  <!-- Navbar -->
+  <Header 
+    activeTab={activeTab} 
+    onTabChange={handleTabChange} 
+    onLogout={logout} 
+  />
+
   <div class="content">
     <!-- Left Column -->
     <div class="left-column">
@@ -131,24 +142,6 @@
           onClose={() => missionResult = null}
         />
       {/if}
-
-      <!-- Tab Navigation -->
-      <div class="tab-navigation">
-        <button 
-          class="tab-btn"
-          class:active={activeTab === 'missions'}
-          on:click={() => activeTab = 'missions'}
-        >
-          💼 Missions
-        </button>
-        <button 
-          class="tab-btn"
-          class:active={activeTab === 'weapons'}
-          on:click={() => activeTab = 'weapons'}
-        >
-          🔫 Weapon Shop
-        </button>
-      </div>
 
       <!-- Missions Section -->
       {#if activeTab === 'missions'}
@@ -200,6 +193,20 @@
           {/if}
         </section>
       {/if}
+
+      <!-- Real Estate Section -->
+      {#if activeTab === 'realestate'}
+        <section class="content-section">
+          <p class="no-content">Real Estate coming soon...</p>
+        </section>
+      {/if}
+
+      <!-- Hoods Section -->
+      {#if activeTab === 'hoods'}
+        <section class="content-section">
+          <Hoods userMoney={user.money} />
+        </section>
+      {/if}
     </div>
   </div>
 </div>
@@ -207,53 +214,30 @@
 <style>
   .main-container {
     min-height: 100vh;
-    padding: 80px;
+    padding-top: 100px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
   .content {
     display: flex;
     gap: 30px;
+    padding: 0 40px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
   .left-column {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: 450px;
+    width: 400px;
+    flex-shrink: 0;
   }
 
   .right-column {
     flex: 1;
-  }
-
-  .tab-navigation {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .tab-btn {
-    flex: 1;
-    padding: 12px 24px;
-    background: #2a2a2a;
-    border: 2px solid #444;
-    border-radius: 8px;
-    color: #e8e6e3;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .tab-btn:hover {
-    border-color: #d4af37;
-    transform: translateY(-2px);
-  }
-
-  .tab-btn.active {
-    background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
-    border-color: #d4af37;
-    color: #1a1a1a;
+    max-width: 1000px;
   }
 
   .content-section {
@@ -262,14 +246,17 @@
 
   .items-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
   }
 
   .loading, .no-content {
     text-align: center;
-    color: #888;
+    color: var(--noir-text-muted);
     padding: 40px;
     font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 </style>

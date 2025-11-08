@@ -4,7 +4,7 @@
 		{
 			"label": "Dev: Run Frontend & Backend",
 			"type": "shell",
-			"command": "Start-Job -ScriptBlock { Set-Location 'f:\\mafia\\MafiaGame\\backend'; npm run dev } -Name 'Backend'; Start-Job -ScriptBlock { Set-Location 'f:\\mafia\\MafiaGame\\frontend'; npm run dev } -Name 'Frontend'; Get-Job | Receive-Job -Wait -AutoRemoveJob",
+			"command": "Start-Job -ScriptBlock { Set-Location '${workspaceFolder}\\backend'; npm run dev } -Name 'Backend'; Start-Job -ScriptBlock { Set-Location '${workspaceFolder}\\frontend'; npm run dev } -Name 'Frontend'; Get-Job | Receive-Job -Wait -AutoRemoveJob",
 			"isBackground": true,
 			"problemMatcher": []
 		}

@@ -24,51 +24,81 @@
 </script>
 
 <div class="weapon-card">
-  <div class="weapon-header">
-    <h3>{weapon.name}</h3>
-    <span class="tier" style="color: {getTierColor(weapon.tier)}">
-      {weapon.tier.toUpperCase()}
-    </span>
+  <div class="card-content">
+    <div class="card-image">
+      <img src="https://placehold.co/200x200/1a1a1a/b8a472?text=Weapon" alt={weapon.name} />
+    </div>
+    <div class="card-info">
+      <div class="weapon-header">
+        <h3>{weapon.name}</h3>
+        <span class="tier" style="color: {getTierColor(weapon.tier)}">
+          {weapon.tier.toUpperCase()}
+        </span>
+      </div>
+      <p class="weapon-description">{weapon.description}</p>
+      <div class="weapon-stats">
+        <div class="stat">
+          <span class="stat-label">⚔️ Damage Bonus:</span>
+          <span class="stat-value success">+{weapon.damageBonus}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">🎯 Success Rate:</span>
+          <span class="stat-value success">+{(weapon.successRateBonus * 100).toFixed(0)}%</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">💰 Price:</span>
+          <span class="stat-value price">${weapon.price.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>
+    <button 
+      class="weapon-btn"
+      class:owned
+      class:cant-afford={!canAfford && !owned}
+      on:click={handleBuy}
+      disabled={owned || !canAfford}
+    >
+      {owned ? 'Owned' : canAfford ? 'Buy' : 'Not Enough Money'}
+    </button>
   </div>
-  <p class="weapon-description">{weapon.description}</p>
-  <div class="weapon-stats">
-    <div class="stat">
-      <span class="stat-label">⚔️ Damage Bonus:</span>
-      <span class="stat-value success">+{weapon.damageBonus}</span>
-    </div>
-    <div class="stat">
-      <span class="stat-label">🎯 Success Rate:</span>
-      <span class="stat-value success">+{(weapon.successRateBonus * 100).toFixed(0)}%</span>
-    </div>
-    <div class="stat">
-      <span class="stat-label">💰 Price:</span>
-      <span class="stat-value price">${weapon.price.toLocaleString()}</span>
-    </div>
-  </div>
-  <button 
-    class="weapon-btn"
-    class:owned
-    class:cant-afford={!canAfford && !owned}
-    on:click={handleBuy}
-    disabled={owned || !canAfford}
-  >
-    {owned ? 'Owned' : canAfford ? 'Buy' : 'Not Enough Money'}
-  </button>
 </div>
 
 <style>
   .weapon-card {
-    background: #2a2a2a;
-    border: 2px solid #444;
-    border-radius: 12px;
+    background: transparent;
+    border: 1px solid var(--noir-light-gray);
+    border-left: 2px solid var(--noir-accent);
+    border-radius: 0;
     padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    width: 280px;
+    transition: all 0.3s;
+    width: 100%;
+    min-height: 240px;
+  }
+
+  .card-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .card-image {
+    flex-shrink: 0;
+  }
+
+  .card-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid var(--noir-light-gray);
+  }
+
+  .card-info {
+    flex: 1;
   }
 
   .weapon-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+    border-left-color: var(--noir-accent);
+    background: rgba(26, 26, 26, 0.95);
   }
 
   .weapon-header {
@@ -76,40 +106,54 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(240, 230, 140, 0.1);
   }
 
   .weapon-header h3 {
-    color: #e8e6e3;
+    color: var(--noir-text);
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
   .tier {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 4px 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid currentColor;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
   }
 
   .weapon-description {
-    color: #aaa;
+    color: var(--noir-text-muted);
     margin-bottom: 15px;
-    line-height: 1.4;
-    font-size: 0.9rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
   }
 
   .weapon-stats {
-    background: #1a1a1a;
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--noir-light-gray);
+    border-radius: 0;
     padding: 12px;
     margin-bottom: 15px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .stat {
     display: flex;
     justify-content: space-between;
     margin-bottom: 6px;
+    font-family: 'Courier New', monospace;
   }
 
   .stat:last-child {
@@ -117,52 +161,60 @@
   }
 
   .stat-label {
-    color: #888;
-    font-size: 0.85rem;
+    color: var(--noir-text-muted);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
   }
 
   .stat-value {
-    font-weight: 600;
-    color: #e8e6e3;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--noir-text);
   }
 
   .stat-value.success {
-    color: #4CAF50;
+    color: #6b8e4e;
   }
 
   .stat-value.price {
-    color: #d4af37;
+    color: var(--noir-accent);
   }
 
   .weapon-btn {
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
-    border: none;
-    border-radius: 6px;
-    color: #1a1a1a;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 12px 30px;
+    background: transparent;
+    border: 3px solid var(--noir-accent);
+    color: var(--noir-accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    min-width: 180px;
   }
 
-  .weapon-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+  .weapon-btn:hover:not(:disabled):not(.owned) {
+    background: rgba(128, 128, 128, 0.1);
   }
 
   .weapon-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 
   .weapon-btn.owned {
-    background: #4CAF50;
-    color: white;
+    background: transparent;
+    border-color: var(--noir-accent-dim);
+    color: var(--noir-text-muted);
   }
 
   .weapon-btn.cant-afford {
-    background: #666;
+    background: transparent;
+    border-color: var(--noir-light-gray);
+    color: var(--noir-text-muted);
   }
 </style>

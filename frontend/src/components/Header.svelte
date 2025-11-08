@@ -1,57 +1,112 @@
 <script lang="ts">
-  export let username: string;
+  export let activeTab: 'missions' | 'weapons' | 'realestate' | 'hoods';
+  export let onTabChange: (tab: 'missions' | 'weapons' | 'realestate' | 'hoods') => void;
   export let onLogout: () => void;
 </script>
 
-<header>
-  <h1>🕴️ Mafia Game</h1>
-  <div class="user-info">
-    <span class="username">{username}</span>
+<nav class="navbar">
+  <div class="navbar-content">
+    <button 
+      class="nav-btn"
+      class:active={activeTab === 'missions'}
+      on:click={() => onTabChange('missions')}
+    >
+      Missions
+    </button>
+    <button 
+      class="nav-btn"
+      class:active={activeTab === 'weapons'}
+      on:click={() => onTabChange('weapons')}
+    >
+      Weapons
+    </button>
+    <button 
+      class="nav-btn"
+      class:active={activeTab === 'realestate'}
+      on:click={() => onTabChange('realestate')}
+    >
+      Real Estate
+    </button>
+    <button 
+      class="nav-btn"
+      class:active={activeTab === 'hoods'}
+      on:click={() => onTabChange('hoods')}
+    >
+      Hoods
+    </button>
     <button class="logout-btn" on:click={onLogout}>Logout</button>
   </div>
-</header>
+</nav>
 
 <style>
-  header {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(5px);
+    border-bottom: 2px solid var(--noir-accent);
+    z-index: 1000;
+    width: 100%;
+  }
+
+  .navbar-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #2a2a2a;
-    border-radius: 12px;
-    border: 2px solid #444;
+    gap: 0;
+    padding: 15px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  header h1 {
-    color: #d4af37;
-    margin: 0;
+  .nav-btn {
+    padding: 12px 35px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(128, 128, 128, 0.3);
+    color: var(--noir-text-muted);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
   }
 
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  .nav-btn:last-of-type {
+    border-right: none;
   }
 
-  .username {
-    color: #d4af37;
-    font-weight: 600;
-    font-size: 1.1rem;
+  .nav-btn:hover {
+    color: var(--noir-accent);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-btn.active {
+    color: var(--noir-accent);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .logout-btn {
-    padding: 10px 20px;
-    background: #8b0000;
-    color: white;
-    border: none;
-    border-radius: 6px;
+    margin-left: auto;
+    padding: 10px 25px;
+    background: transparent;
+    border: 2px solid var(--noir-red);
+    color: var(--noir-red);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
   }
 
   .logout-btn:hover {
-    background: #a00000;
+    background: var(--noir-red);
+    color: #c4c4c4;
   }
 </style>

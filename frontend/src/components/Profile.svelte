@@ -10,18 +10,18 @@
 </script>
 
 <section class="profile-section">
-  <h2>👤 Your Profile</h2>
+  <h2>// YOUR PROFILE</h2>
   <div class="profile-card">
     <div class="profile-item">
-      <span class="label">Boss Name:</span>
+      <span class="label">BOSS NAME:</span>
       <span class="value">{username}</span>
     </div>
     <div class="profile-item">
-      <span class="label">Level:</span>
+      <span class="label">LEVEL:</span>
       <span class="value level">{level}</span>
     </div>
     <div class="profile-item">
-      <span class="label">Money:</span>
+      <span class="label">MONEY:</span>
       <span class="value money">${money.toLocaleString()}</span>
     </div>
     <div class="profile-item">
@@ -31,7 +31,7 @@
     <div class="xp-bar">
       <div class="xp-progress" style="width: {xpProgressPercent}%"></div>
     </div>
-    <small class="xp-info">{xpProgress} / {xpToNextLevel} XP to next level</small>
+    <small class="xp-info">{xpProgress} / {xpToNextLevel} XP TO NEXT LEVEL</small>
   </div>
 </section>
 
@@ -43,14 +43,18 @@
   }
 
   .profile-section h2 {
-    color: #d4af37;
+    color: var(--noir-accent);
     margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
   }
 
   .profile-card {
-    background: #2a2a2a;
-    border: 2px solid #444;
-    border-radius: 12px;
+    background: transparent;
+    border: 1px solid var(--noir-light-gray);
+    border-top: 2px solid var(--noir-accent);
+    border-radius: 0;
     padding: 25px;
   }
 
@@ -59,47 +63,55 @@
     justify-content: space-between;
     margin-bottom: 12px;
     font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
   }
 
   .profile-item .label {
-    color: #888;
-    font-weight: 500;
+    color: var(--noir-text-muted);
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 
   .profile-item .value {
-    font-weight: 600;
-    color: #e8e6e3;
+    font-weight: 700;
+    color: var(--noir-text);
   }
 
   .profile-item .level {
-    color: #9c27b0;
+    color: #9370db;
   }
 
   .profile-item .money {
-    color: #4CAF50;
+    color: #6b8e4e;
   }
 
   .profile-item .xp {
-    color: #2196F3;
+    color: #4682b4;
   }
 
   .xp-bar {
-    height: 20px;
-    background: #1a1a1a;
-    border-radius: 10px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--noir-light-gray);
+    border-radius: 0;
     overflow: hidden;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.6);
   }
 
   .xp-progress {
     height: 100%;
-    background: linear-gradient(90deg, #2196F3, #21CBF3);
+    background: var(--noir-accent);
     transition: width 0.5s ease;
   }
 
   .xp-info {
-    color: #888;
-    font-size: 0.9rem;
+    color: var(--noir-text-muted);
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
   }
 </style>
