@@ -92,7 +92,7 @@
           <button 
             class="buy-btn"
             disabled={userMoney < selectedHood.price}
-            on:click={() => buyHood(selectedHood)}
+            on:click={() => selectedHood && buyHood(selectedHood)}
           >
             {userMoney >= selectedHood.price ? 'PURCHASE TERRITORY' : 'INSUFFICIENT FUNDS'}
           </button>
