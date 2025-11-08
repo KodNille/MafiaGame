@@ -11,7 +11,7 @@ export function createMissionRoutes(db: FakeDB) {
   });
 
   // Execute a mission
-  router.post('/missions/:id/execute', (req: Request, res: Response) => {
+  router.post('/missions/:id/execute', async (req: Request, res: Response) => {
     const missionId = parseInt(req.params.id);
     const { username } = req.body;
     
@@ -29,6 +29,9 @@ export function createMissionRoutes(db: FakeDB) {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
+
+    // Wait for mission duration
+    await new Promise(resolve => setTimeout(resolve, mission.duration));
 
     // Calculate success based on mission success rate
     const randomValue = Math.random();

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount, onDestroy } from 'svelte';
+  
   export let id: number;
   export let name: string;
   export let description: string;
@@ -7,8 +9,47 @@
   export let rewardXP: number;
   export let lossMoney: number;
   export let successRate: number;
+  export let duration: number; // in milliseconds
   export let onExecute: (id: number) => void;
   export let disabled: boolean = false;
+  export let isExecuting: boolean = false;
+  export let durationClass: string = '';
+
+  let progress = 0;
+  let interval: number | null = null;
+
+  $: if (isExecuting) {
+    startProgress();
+  } else {
+    stopProgress();
+  }
+
+  function startProgress() {
+    progress = 0;
+    const steps = 100;
+    const stepDuration = duration / steps;
+    
+    interval = window.setInterval(() => {
+      progress += 1;
+      if (progress >= 100) {
+        stopProgress();
+      }
+    }, stepDuration);
+  }
+
+  function stopProgress() {
+    if (interval !== null) {
+      clearInterval(interval);
+      interval = null;
+    }
+    if (!isExecuting) {
+      progress = 0;
+    }
+  }
+
+  onDestroy(() => {
+    stopProgress();
+  });
 
   function getDifficultyColor(difficulty: string): string {
     switch (difficulty) {
@@ -37,6 +78,10 @@
       <span class="stat-label">Success Rate:</span>
       <span class="stat-value">{(successRate * 100).toFixed(0)}%</span>
     </div>
+    <div class="stat">
+      <span class="stat-label">Time:</span>
+      <span class="stat-value">{durationClass}</span>
+    </div>
     <div class="stat success-stat">
       <span class="stat-label">💰 Reward:</span>
       <span class="stat-value">${rewardMoney.toLocaleString()}</span>
@@ -52,10 +97,18 @@
   </div>
   <button 
     class="mission-btn"
+    class:executing={isExecuting}
     on:click={handleExecute}
     {disabled}
   >
-    {disabled ? 'Executing...' : 'Start Mission'}
+    {#if isExecuting}
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {progress}%"></div>
+      </div>
+      <span class="btn-text">Executing... {progress}%</span>
+    {:else}
+      Start Mission
+    {/if}
   </button>
 </div>
 
@@ -147,6 +200,34 @@
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-btn.executing {
+    background: #3a3a3a;
+    color: #d4af37;
+  }
+
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2a2a2a;
+    z-index: 0;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+    transition: width 0.1s linear;
+  }
+
+  .btn-text {
+    position: relative;
+    z-index: 1;
   }
 
   .mission-btn:hover:not(:disabled) {

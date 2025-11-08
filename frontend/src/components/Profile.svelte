@@ -38,7 +38,7 @@
 <style>
   .profile-section {
     margin-bottom: 30px;
-    width: 300px;
+    width: 100%;
     flex-shrink: 0;
   }
 

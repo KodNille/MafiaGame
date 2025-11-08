@@ -14,6 +14,8 @@ export interface Mission {
   rewardXP: number;
   lossMoney: number;
   successRate: number;
+  duration: number; // in milliseconds
+  durationClass: string;
 }
 
 export interface MissionResult {
@@ -29,4 +31,26 @@ export interface MissionResult {
 export interface LoginResponse {
   success: boolean;
   user: User;
+}
+
+export interface Weapon {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  damageBonus: number;
+  successRateBonus: number;
+  tier: 'common' | 'uncommon' | 'rare' | 'legendary';
+  equipped?: boolean;
+}
+
+export interface BuyWeaponResponse {
+  success: boolean;
+  weapon: string;
+  newMoney: number;
+}
+
+export interface EquipWeaponResponse {
+  success: boolean;
+  weapon: string;
 }

@@ -7,7 +7,9 @@
     "rewardMoney": 500,
     "rewardXP": 50,
     "lossMoney": 200,
-    "successRate": 0.75
+    "successRate": 0.75,
+    "duration": 5000,
+    "durationClass": "short"
   },
   {
     "id": 5,
@@ -17,7 +19,9 @@
     "rewardMoney": 800,
     "rewardXP": 70,
     "lossMoney": 300,
-    "successRate": 0.70
+    "successRate": 0.70,
+    "duration": 8000,
+    "durationClass": "short"
   },
   {
     "id": 2,
@@ -27,7 +31,9 @@
     "rewardMoney": 2000,
     "rewardXP": 150,
     "lossMoney": 800,
-    "successRate": 0.55
+    "successRate": 0.55,
+    "duration": 15000,
+    "durationClass": "medium"
   },
   {
     "id": 4,
@@ -37,7 +43,9 @@
     "rewardMoney": 1500,
     "rewardXP": 120,
     "lossMoney": 600,
-    "successRate": 0.60
+    "successRate": 0.60,
+    "duration": 12000,
+    "durationClass": "medium"
   },
   {
     "id": 3,
@@ -47,6 +55,8 @@
     "rewardMoney": 5000,
     "rewardXP": 400,
     "lossMoney": 2000,
-    "successRate": 0.35
+    "successRate": 0.35,
+    "duration": 20000,
+    "durationClass": "long"
   }
 ]

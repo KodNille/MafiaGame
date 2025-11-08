@@ -10,6 +10,8 @@ export interface Mission {
   rewardXP: number;
   lossMoney: number;
   successRate: number;
+  duration: number; // in milliseconds
+  durationClass: string;
 }
 
 export class MissionManager {

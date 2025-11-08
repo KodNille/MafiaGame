@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Brass Knuckles",
+    "description": "Basic melee weapon for street fights",
+    "price": 500,
+    "damageBonus": 5,
+    "successRateBonus": 0.05,
+    "tier": "common"
+  },
+  {
+    "id": 2,
+    "name": "Switchblade",
+    "description": "Quick and deadly close-range weapon",
+    "price": 1200,
+    "damageBonus": 10,
+    "successRateBonus": 0.08,
+    "tier": "common"
+  },
+  {
+    "id": 3,
+    "name": "Baseball Bat",
+    "description": "Reliable weapon for enforcing territory",
+    "price": 800,
+    "damageBonus": 8,
+    "successRateBonus": 0.06,
+    "tier": "common"
+  },
+  {
+    "id": 4,
+    "name": "Pistol",
+    "description": "Standard sidearm for protection",
+    "price": 3000,
+    "damageBonus": 20,
+    "successRateBonus": 0.12,
+    "tier": "uncommon"
+  },
+  {
+    "id": 5,
+    "name": "Shotgun",
+    "description": "Powerful close-range firearm",
+    "price": 5500,
+    "damageBonus": 35,
+    "successRateBonus": 0.15,
+    "tier": "uncommon"
+  },
+  {
+    "id": 6,
+    "name": "Tommy Gun",
+    "description": "Classic mob weapon with high firepower",
+    "price": 8000,
+    "damageBonus": 45,
+    "successRateBonus": 0.18,
+    "tier": "rare"
+  },
+  {
+    "id": 7,
+    "name": "Sniper Rifle",
+    "description": "Long-range precision weapon for hits",
+    "price": 12000,
+    "damageBonus": 60,
+    "successRateBonus": 0.22,
+    "tier": "rare"
+  },
+  {
+    "id": 8,
+    "name": "Golden Revolver",
+    "description": "Legendary weapon of the crime boss",
+    "price": 25000,
+    "damageBonus": 80,
+    "successRateBonus": 0.30,
+    "tier": "legendary"
+  }
+]
